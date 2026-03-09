@@ -1,5 +1,6 @@
 package com.HOTARU.testMod;
 
+import com.HOTARU.testMod.item.modCreativeModTabs;
 import com.HOTARU.testMod.item.modItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -37,6 +38,7 @@ public class TestMod
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         modItems.register(modEventBus);
+        modCreativeModTabs.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
@@ -69,6 +71,7 @@ public class TestMod
                 event.accept(modItems.TEST_ITEM_1);
                 event.accept(modItems.TEST_ITEM_2);
                 event.accept(modItems.TEST_ITEM_3);
+                event.accept(modItems.TEST_ITEM_4);
 
             }
     }

@@ -21,6 +21,8 @@ public class modItems {
             ITEMS.register("test_item_2",()->new Item(new Item.Properties()));
     public static final RegistryObject<Item> TEST_ITEM_3 =
             ITEMS.register("material/test_item_3",()->new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TEST_ITEM_4 =
+            ITEMS.register("material/test_item_4",()->new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
