@@ -1,7 +1,9 @@
-package com.example.examplemod;
+package com.HOTARU.tutorialMod;
 
+import com.HOTARU.tutorialMod.item.modItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -33,7 +36,7 @@ public class TutorialMod
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
+        modItems.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
@@ -56,13 +59,18 @@ public class TutorialMod
 
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        Config.items.forEach((item) -> LOGGER.info("ITEMS >> {}", item.toString()));
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-                                   
+            if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
+                event.accept(modItems.ICE_ETHER);
+                event.accept(modItems.RAW_ICE_ETHER);
+                event.accept(modItems.CARDBOARD);
+
+            }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
