@@ -1,6 +1,6 @@
-package com.HOTARU.tutorialMod;
+package com.HOTARU.testMod;
 
-import com.HOTARU.tutorialMod.item.modItems;
+import com.HOTARU.testMod.item.modItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -21,16 +21,16 @@ import org.slf4j.Logger;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(TutorialMod.MOD_ID)
-public class TutorialMod
+@Mod(TestMod.MOD_ID)
+public class TestMod
 {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "tutorial_mod";
+    public static final String MOD_ID = "test_mod";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
-    public TutorialMod(FMLJavaModLoadingContext context)
+    public TestMod(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
 
@@ -66,9 +66,9 @@ public class TutorialMod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
             if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
-                event.accept(modItems.ICE_ETHER);
-                event.accept(modItems.RAW_ICE_ETHER);
-                event.accept(modItems.CARDBOARD);
+                event.accept(modItems.TEST_ITEM_1);
+                event.accept(modItems.TEST_ITEM_2);
+                event.accept(modItems.TEST_ITEM_3);
 
             }
     }
