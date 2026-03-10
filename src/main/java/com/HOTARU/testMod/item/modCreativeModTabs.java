@@ -2,6 +2,7 @@ package com.HOTARU.testMod.item;
 
 
 import com.HOTARU.testMod.TestMod;
+import com.HOTARU.testMod.block.modBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,6 +33,16 @@ public class modCreativeModTabs {
                       pOutput.accept(modItems.TEST_ITEM_3.get());
                       pOutput.accept(modItems.TEST_ITEM_4.get());
                       pOutput.accept(Items.DIAMOND);
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> TEST_TAB_3 =
+            CREATIVE_MODE_TABS.register("test_tab_3",()-> CreativeModeTab.builder()
+                    .icon(()->new ItemStack(modBlocks.TEST_BLOCK_1.get()))
+                    .title(Component.translatable("itemGroup.test_tab_3"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(modBlocks.TEST_BLOCK_1.get());
+                        pOutput.accept(modBlocks.TEST_BLOCK_2.get());
+                        pOutput.accept(modBlocks.TEST_BLOCK_3.get());
                     }).build());
 
     public static void register(IEventBus eventBus){

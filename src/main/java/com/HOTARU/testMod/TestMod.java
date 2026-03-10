@@ -2,6 +2,7 @@ package com.HOTARU.testMod;
 
 import com.HOTARU.testMod.item.modCreativeModTabs;
 import com.HOTARU.testMod.item.modItems;
+import com.HOTARU.testMod.block.modBlocks;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -39,6 +40,7 @@ public class TestMod
         modEventBus.addListener(this::commonSetup);
         modItems.register(modEventBus);
         modCreativeModTabs.register(modEventBus);
+        modBlocks.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in

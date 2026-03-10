@@ -1,0 +1,46 @@
+package com.HOTARU.testMod.block;
+
+import com.HOTARU.testMod.TestMod;
+import com.HOTARU.testMod.item.modItems;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
+
+public class modBlocks {
+    public static final DeferredRegister<Block> BLOCKS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, TestMod.MOD_ID);
+
+    public static final RegistryObject<Block> TEST_BLOCK_1 =
+            registerBlock("test_block_1",()->new Block(BlockBehaviour.Properties.of().strength(1.5F,3.0F)));
+    public static final RegistryObject<Block> TEST_BLOCK_2 =
+            registerBlock("test_block_2",()->new Block(BlockBehaviour.Properties.of().strength(3.0F,3.0F)));
+    public static final RegistryObject<Block> TEST_BLOCK_3 =
+            registerBlock("test_block_3",()->new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
+
+
+
+    private static <T extends Block>void registerBlockItems(String name, RegistryObject<T> block){
+        modItems.ITEMS.register(name,()->new BlockItem(block.get(),new Item.Properties()));
+    }
+
+    private static<T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
+        RegistryObject<T> blocks =BLOCKS.register(name,block);
+        registerBlockItems(name,blocks);
+        return blocks;
+    }
+
+    public static void register(IEventBus eventBus){
+        BLOCKS.register(eventBus);
+    }
+
+
+
+}
