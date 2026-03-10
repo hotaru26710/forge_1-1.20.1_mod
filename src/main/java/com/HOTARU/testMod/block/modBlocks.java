@@ -24,6 +24,8 @@ public class modBlocks {
             registerBlock("test_block_2",()->new Block(BlockBehaviour.Properties.of().strength(3.0F,3.0F)));
     public static final RegistryObject<Block> TEST_BLOCK_3 =
             registerBlock("test_block_3",()->new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
+    public static final RegistryObject<Block> ZIJIE_WANG =
+            registerBlock("zijie_wang",()->new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
 
 
 

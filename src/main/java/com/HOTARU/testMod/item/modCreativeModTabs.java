@@ -43,6 +43,7 @@ public class modCreativeModTabs {
                         pOutput.accept(modBlocks.TEST_BLOCK_1.get());
                         pOutput.accept(modBlocks.TEST_BLOCK_2.get());
                         pOutput.accept(modBlocks.TEST_BLOCK_3.get());
+                        pOutput.accept(modBlocks.ZIJIE_WANG.get());
                     }).build());
 
     public static void register(IEventBus eventBus){

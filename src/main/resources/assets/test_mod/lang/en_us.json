@@ -1,0 +1,15 @@
+{
+  "item.test_mod.test_item_1": "english_test_item_1",
+  "item.test_mod.test_item_2": "english_test_item_2",
+  "item.test_mod.material.test_item_3": "english_test_item_3",
+  "item.test_mod.material.test_item_4": "english_test_item_4",
+  "block.test_mod.test_block_1": "english_test_block_1",
+  "block.test_mod.test_block_2": "english_test_block_2",
+  "block.test_mod.test_block_3": "english_test_block_3",
+  "block.test_mod.zijie_wang": "zijie_wang",
+  "itemGroup.test_tab_1": "english_test_tab_1",
+  "itemGroup.test_tab_2": "english_test_tab_2",
+  "itemGroup.test_tab_3": "english_test_tab_3"
+
+
+}

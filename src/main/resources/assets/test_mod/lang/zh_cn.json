@@ -1,0 +1,13 @@
+{
+  "item.test_mod.test_item_1": "中文物品示例1",
+  "item.test_mod.test_item_2": "中文物品示例2",
+  "item.test_mod.material.test_item_3": "中文物品示例3",
+  "item.test_mod.material.test_item_4": "中文物品示例4",
+  "block.test_mod.test_block_1": "中文方块示例1",
+  "block.test_mod.test_block_2": "中文方块示例2",
+  "block.test_mod.test_block_3": "中文方块示例3",
+  "block.test_mod.zijie_wang": "傻逼王子杰",
+  "itemGroup.test_tab_1": "中文测试栏位1",
+  "itemGroup.test_tab_2": "中文测试栏位2",
+  "itemGroup.test_tab_3": "中文测试栏位3"
+}
