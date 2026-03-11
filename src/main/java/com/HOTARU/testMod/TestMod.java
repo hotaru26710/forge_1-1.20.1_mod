@@ -74,6 +74,11 @@ public class TestMod
                 event.accept(modItems.TEST_ITEM_2);
                 event.accept(modItems.TEST_ITEM_3);
                 event.accept(modItems.TEST_ITEM_4);
+                event.accept(modItems.SHIT);
+                event.accept(modItems.ARM_ZIJIE_WANG);
+                event.accept(modItems.HEAD_ZIJIE_WANG);
+                event.accept(modItems.BODY_ZIJIE_WANG);
+                event.accept(modItems.LEGS_ZIJIE_WANG);
 
             }
     }

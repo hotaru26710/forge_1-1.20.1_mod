@@ -43,8 +43,22 @@ public class modCreativeModTabs {
                         pOutput.accept(modBlocks.TEST_BLOCK_1.get());
                         pOutput.accept(modBlocks.TEST_BLOCK_2.get());
                         pOutput.accept(modBlocks.TEST_BLOCK_3.get());
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> ZIJIE_WANG =
+            CREATIVE_MODE_TABS.register("zijie_wang_tab",()-> CreativeModeTab.builder()
+                    .icon(()->new ItemStack(modBlocks.ZIJIE_WANG.get()))
+                    .title(Component.translatable("itemGroup.zijie_wang_tab"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(modItems.HEAD_ZIJIE_WANG.get());
+                        pOutput.accept(modItems.ARM_ZIJIE_WANG.get());
+                        pOutput.accept(modItems.BODY_ZIJIE_WANG.get());
+                        pOutput.accept(modItems.LEGS_ZIJIE_WANG.get());
+                        pOutput.accept(modItems.PIECE_ZIJIE_WANG.get());
+                        pOutput.accept(modItems.SHIT.get());
                         pOutput.accept(modBlocks.ZIJIE_WANG.get());
                     }).build());
+
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TABS.register(eventBus);

@@ -25,7 +25,7 @@ public class modBlocks {
     public static final RegistryObject<Block> TEST_BLOCK_3 =
             registerBlock("test_block_3",()->new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
     public static final RegistryObject<Block> ZIJIE_WANG =
-            registerBlock("zijie_wang",()->new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
+            registerBlock("zijie_wang",()->new Block(BlockBehaviour.Properties.of().strength(1.0F,3.0F).requiresCorrectToolForDrops()));
 
 
 

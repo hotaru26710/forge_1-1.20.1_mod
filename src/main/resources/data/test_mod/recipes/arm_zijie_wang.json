@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "test_mod:zijie/piece_zijie_wang"
+    }
+  },
+  "pattern": [
+    "A  ",
+    " AA",
+    " AA"
+  ],
+  "result": {
+    "item": "test_mod:zijie/arm_zijie_wang"
+  }
+}
