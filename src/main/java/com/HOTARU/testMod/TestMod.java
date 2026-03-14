@@ -1,8 +1,8 @@
 package com.HOTARU.testMod;
 
-import com.HOTARU.testMod.item.modCreativeModTabs;
-import com.HOTARU.testMod.item.modItems;
-import com.HOTARU.testMod.block.modBlocks;
+import com.HOTARU.testMod.item.ModCreativeModTabs;
+import com.HOTARU.testMod.item.ModItems;
+import com.HOTARU.testMod.block.ModBlocks;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -38,9 +38,9 @@ public class TestMod
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-        modItems.register(modEventBus);
-        modCreativeModTabs.register(modEventBus);
-        modBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModCreativeModTabs.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
@@ -70,15 +70,17 @@ public class TestMod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
             if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
-                event.accept(modItems.TEST_ITEM_1);
-                event.accept(modItems.TEST_ITEM_2);
-                event.accept(modItems.TEST_ITEM_3);
-                event.accept(modItems.TEST_ITEM_4);
-                event.accept(modItems.SHIT);
-                event.accept(modItems.ARM_ZIJIE_WANG);
-                event.accept(modItems.HEAD_ZIJIE_WANG);
-                event.accept(modItems.BODY_ZIJIE_WANG);
-                event.accept(modItems.LEGS_ZIJIE_WANG);
+                event.accept(ModItems.TEST_ITEM_1);
+                event.accept(ModItems.TEST_ITEM_2);
+                event.accept(ModItems.TEST_ITEM_3);
+                event.accept(ModItems.TEST_ITEM_4);
+                event.accept(ModItems.GALAXY);
+                event.accept(ModItems.RAW_GALAXY);
+                event.accept(ModItems.SHIT);
+                event.accept(ModItems.ARM_ZIJIE_WANG);
+                event.accept(ModItems.HEAD_ZIJIE_WANG);
+                event.accept(ModItems.BODY_ZIJIE_WANG);
+                event.accept(ModItems.LEGS_ZIJIE_WANG);
 
             }
     }
