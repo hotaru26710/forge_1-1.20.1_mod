@@ -32,6 +32,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.TEST_ITEM_3.get(),"test item 3");
         add(ModItems.TEST_ITEM_4.get(),"test item 4");
         add(ModItems.SHIT.get(),"shit");
+        add(ModItems.MEAT_BONE.get(),"meat_bone");
         add(ModItems.GALAXY.get(),"Galaxy");
         add(ModItems.RAW_GALAXY.get(),"Raw Galaxy");
         //这里填写创造物品栏的翻译

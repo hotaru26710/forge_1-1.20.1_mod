@@ -21,11 +21,14 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
     }
 
     public static final List<ItemLike> GALAXY = List.of(ModItems.RAW_GALAXY.get(), ModBlocks.GALAXY_ORE.get());
+    public static final List<ItemLike> MEAT_BONE = List.of(ModItems.ARM_ZIJIE_WANG.get(), ModItems.LEGS_ZIJIE_WANG.get(), ModItems.BODY_ZIJIE_WANG.get(), ModItems.HEAD_ZIJIE_WANG.get());
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
         oreSmelting(pWriter, GALAXY, RecipeCategory.MISC, ModItems.GALAXY.get(), 0.25F, 200, "galaxy");
         oreBlasting(pWriter, GALAXY, RecipeCategory.MISC, ModItems.GALAXY.get(), 0.25F, 100, "galaxy");
+
+        oreSmelting(pWriter, MEAT_BONE, RecipeCategory.MISC, ModItems.MEAT_BONE.get(), 0.25F, 200, "meat_bone");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocks.GALAXY_BLOCK.get())
                 .pattern("XXX")
@@ -35,9 +38,9 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.GALAXY.get()), has(ModItems.GALAXY.get()))
                 .save(pWriter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_GALAXY.get(),9)
-                .requires(ModItems.GALAXY.get())
-                .unlockedBy(getHasName(ModItems.GALAXY.get()), has(ModItems.GALAXY.get()))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GALAXY.get(),9)
+                .requires(ModBlocks.GALAXY_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.GALAXY_BLOCK.get()), has(ModBlocks.GALAXY_BLOCK.get()))
                 .save(pWriter);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,ModItems.PIECE_ZIJIE_WANG.get(),1)

@@ -31,6 +31,7 @@ public class ModZhCnLangProvider extends LanguageProvider{
         add(ModItems.TEST_ITEM_3.get(),"测试物品3");
         add(ModItems.TEST_ITEM_4.get(),"测试物品4");
         add(ModItems.SHIT.get(),"答辩");
+        add(ModItems.MEAT_BONE.get(),"肉骨");
         add(ModItems.GALAXY.get(),"宇宙矿");
         add(ModItems.RAW_GALAXY.get(),"宇宙锭");
         //这里填写创造物品栏的翻译

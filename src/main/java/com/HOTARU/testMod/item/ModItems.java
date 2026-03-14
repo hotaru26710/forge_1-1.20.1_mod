@@ -28,7 +28,9 @@ public class ModItems {
     public static final RegistryObject<Item> GALAXY =
             ITEMS.register("galaxy",()->new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHIT =
-            ITEMS.register("shit",()->new Item(new Item.Properties()));
+            ITEMS.register("shit",()->new Item(new Item.Properties().food(ModFoods.SHIT)));
+    public static final RegistryObject<Item> MEAT_BONE =
+            ITEMS.register("meat_bone",()->new Item(new Item.Properties().food(ModFoods.MEAT_BONE)));
     public static final RegistryObject<Item> HEAD_ZIJIE_WANG =
             ITEMS.register("head_zijie_wang",()->new Item(new Item.Properties()));
     public static final RegistryObject<Item> ARM_ZIJIE_WANG =

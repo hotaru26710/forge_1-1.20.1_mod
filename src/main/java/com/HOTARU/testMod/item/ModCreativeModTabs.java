@@ -60,6 +60,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.PIECE_ZIJIE_WANG.get());
                         pOutput.accept(ModItems.SHIT.get());
                         pOutput.accept(ModBlocks.ZIJIE_WANG.get());
+                        pOutput.accept(ModItems.MEAT_BONE.get());
                     }).build());
 
 
