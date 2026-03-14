@@ -1,6 +1,7 @@
 package com.HOTARU.testMod.datagen;
 
 import com.HOTARU.testMod.TestMod;
+import com.HOTARU.testMod.item.ModFuelItem;
 import com.HOTARU.testMod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -27,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_GALAXY.get());
         basicItem(ModItems.GALAXY.get());
         basicItem(ModItems.MEAT_BONE.get());
+        basicItem(ModItems.FUEL_CELL.get());
 
         withExistingParent("galaxy_block", modLoc("block/galaxy_block"));
         withExistingParent("galaxy_ore", modLoc("block/galaxy_ore"));

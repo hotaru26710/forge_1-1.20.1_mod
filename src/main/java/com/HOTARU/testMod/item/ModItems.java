@@ -41,6 +41,8 @@ public class ModItems {
             ITEMS.register("legs_zijie_wang",()->new Item(new Item.Properties()));
     public static final RegistryObject<Item> PIECE_ZIJIE_WANG =
             ITEMS.register("piece_zijie_wang",()->new Item(new Item.Properties()));
+    public static final RegistryObject<Item> FUEL_CELL =
+            ITEMS.register("fuel_cell",()->new ModFuelItem(new Item.Properties(),3000));
 
 
 

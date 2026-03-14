@@ -34,6 +34,7 @@ public class ModCreativeModTabs {
                       pOutput.accept(ModItems.TEST_ITEM_4.get());
                       pOutput.accept(ModItems.GALAXY.get());
                       pOutput.accept(ModItems.RAW_GALAXY.get());
+                      pOutput.accept(ModItems.FUEL_CELL.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> TEST_TAB_3 =

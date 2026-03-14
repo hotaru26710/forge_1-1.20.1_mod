@@ -34,6 +34,7 @@ public class ModZhCnLangProvider extends LanguageProvider{
         add(ModItems.MEAT_BONE.get(),"肉骨");
         add(ModItems.GALAXY.get(),"宇宙矿");
         add(ModItems.RAW_GALAXY.get(),"宇宙锭");
+        add(ModItems.FUEL_CELL.get(),"燃料电池");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","测试物品栏1");
         add("itemGroup.test_tab_2","测试物品栏2");

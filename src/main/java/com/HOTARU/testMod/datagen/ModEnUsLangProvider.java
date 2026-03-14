@@ -35,6 +35,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.MEAT_BONE.get(),"meat_bone");
         add(ModItems.GALAXY.get(),"Galaxy");
         add(ModItems.RAW_GALAXY.get(),"Raw Galaxy");
+        add(ModItems.FUEL_CELL.get(),"fuel_cell");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","test_tab_1");
         add("itemGroup.test_tab_2","test_tab_2");
