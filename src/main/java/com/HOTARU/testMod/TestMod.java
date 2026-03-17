@@ -1,5 +1,6 @@
 package com.HOTARU.testMod;
 
+
 import com.HOTARU.testMod.item.ModCreativeModTabs;
 import com.HOTARU.testMod.item.ModItems;
 import com.HOTARU.testMod.block.ModBlocks;
@@ -41,6 +42,9 @@ public class TestMod
         ModItems.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        
 
 
         // Register ourselves for server and other game events we are interested in

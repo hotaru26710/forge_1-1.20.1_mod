@@ -27,7 +27,8 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                          ModBlocks.TEST_BLOCK_3.get(),
                          ModBlocks.ZIJIE_WANG.get(),
                          ModBlocks.GALAXY_ORE.get(),
-                         ModBlocks.GALAXY_BLOCK.get()
+                         ModBlocks.GALAXY_BLOCK.get(),
+                         ModBlocks.GALAXY_FURNACE.get()
 
 
 

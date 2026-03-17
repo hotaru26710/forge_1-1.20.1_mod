@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "test_mod:block/galaxy_furnace", "y": 0 },
+    "facing=south": { "model": "test_mod:block/galaxy_furnace", "y": 180},
+    "facing=west": { "model": "test_mod:block/galaxy_furnace", "y": 270 },
+    "facing=east": { "model": "test_mod:block/galaxy_furnace", "y": 90 }
+  }
+}

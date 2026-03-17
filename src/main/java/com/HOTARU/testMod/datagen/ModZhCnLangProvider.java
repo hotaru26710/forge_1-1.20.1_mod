@@ -20,6 +20,7 @@ public class ModZhCnLangProvider extends LanguageProvider{
         add(ModBlocks.ZIJIE_WANG.get(), "王子杰");
         add(ModBlocks.GALAXY_ORE.get(), "宇宙矿石");
         add(ModBlocks.GALAXY_BLOCK.get(), "宇宙块");
+        add(ModBlocks.GALAXY_FURNACE.get(), "宇宙熔炉");
         //这里填写模组物品的翻译
         add(ModItems.ARM_ZIJIE_WANG.get(),"王子杰的手臂");
         add(ModItems.LEGS_ZIJIE_WANG.get(),"王子杰的腿");

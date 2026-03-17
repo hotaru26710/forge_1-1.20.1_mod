@@ -91,6 +91,14 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('B',ModItems.BODY_ZIJIE_WANG.get())
                 .unlockedBy(getHasName(ModItems.PIECE_ZIJIE_WANG.get()),has(ModItems.PIECE_ZIJIE_WANG.get()))
                 .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModBlocks.GALAXY_FURNACE.get(),1)
+                .pattern("XXX")
+                .pattern("X X")
+                .pattern("XXX")
+                .define('X',ModItems.GALAXY.get())
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");

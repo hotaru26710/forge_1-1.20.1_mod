@@ -21,6 +21,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModBlocks.ZIJIE_WANG.get(), "Zijie Wang");
         add(ModBlocks.GALAXY_ORE.get(), "Galaxy Ore");
         add(ModBlocks.GALAXY_BLOCK.get(), "Galaxy Block");
+        add(ModBlocks.GALAXY_FURNACE.get(), "Galaxy Furnace");
         //这里填写模组物品的翻译
         add(ModItems.ARM_ZIJIE_WANG.get(),"zijie's arm");
         add(ModItems.LEGS_ZIJIE_WANG.get(),"zijie's leg");

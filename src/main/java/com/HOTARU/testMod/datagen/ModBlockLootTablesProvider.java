@@ -28,6 +28,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider{
          dropSelf(ModBlocks.TEST_BLOCK_1.get());
          dropSelf(ModBlocks.TEST_BLOCK_2.get());
          dropSelf(ModBlocks.GALAXY_BLOCK.get());
+         dropSelf(ModBlocks.GALAXY_FURNACE.get());
          add(ModBlocks.TEST_BLOCK_3.get(),block -> createOreLikeDrops(ModBlocks.TEST_BLOCK_3.get(), Items.DIAMOND,1.0F,2.0F));
          add(ModBlocks.ZIJIE_WANG.get(),block -> createOreLikeDrops(ModBlocks.ZIJIE_WANG.get(),ModItems.SHIT.get(),20.0F,25.0F));
          add(ModBlocks.GALAXY_ORE.get(),block->createOreLikeDrops(ModBlocks.GALAXY_ORE.get(),ModItems.RAW_GALAXY.get(),1.0F,2.0F));

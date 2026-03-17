@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "test_mod:block/galaxy_furnace_front",
+    "east": "test_mod:block/galaxy_furnace_side",
+    "south": "test_mod:block/galaxy_furnace_side",
+    "west": "test_mod:block/galaxy_furnace_side",
+    "up": "test_mod:block/galaxy_furnace_top",
+    "down": "test_mod:block/galaxy_furnace_top",
+    "particle": "test_mod:block/galaxy_furnace_front"
+  }
+}
