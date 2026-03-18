@@ -25,6 +25,9 @@ import javax.annotation.Nullable;
 
 // 继承 HorizontalDirectionalBlock，使方块天然支持水平四方向（N/S/E/W）朝向。
 public class GalaxyFurnace extends HorizontalDirectionalBlock implements EntityBlock {
+
+    /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // 方块的朝向属性（水平四方向）。
     // 直接复用 Minecraft 已有的 FACING 定义，而不是重新创建一个属性。
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

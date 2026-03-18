@@ -13,12 +13,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.openjdk.nashorn.internal.runtime.options.Option;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
+
+
 
 
 // 这个类是 Galaxy Furnace 方块的 Block Entity（方块实体）类。
@@ -26,25 +33,32 @@ import javax.annotation.Nullable;
 public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
     private int progress = 0;// 进度条，0-100，表示当前熔炉的工作进度。
+    private int burnTime = 0;
+    private int currentItemBurnTime = 0;
+
     protected final ContainerData data = new ContainerData() {
         @Override
         public int get(int index) {
             return switch(index) {
                 case 0 -> progress;
+                case 1 -> burnTime;
+                case 2 ->currentItemBurnTime;
                 default -> 0;
             };
         }
 
         @Override
         public void set(int index,int value){
-            if(index==0){
-                progress=value;
+            switch (index){
+                case 0 ->progress=value;
+                case 1 ->burnTime=value;
+                case 2 ->currentItemBurnTime=value;
             }
         }
 
        @Override
        public int getCount() {
-            return 1;
+            return 3;
         }
     };
 
@@ -53,12 +67,123 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public void tick(){
-        progress++;
-        setChanged();
+        if(level == null || level.isClientSide()) {
+            return;
+        }
+        // 这里可以添加熔炉的工作逻辑，比如处理输入物品、
+        boolean dirty = false;
+        if(hasFuel()){
+            if(burnTime<=0){
+                consumeFuel();
+                dirty=true;
+            }
+            if(burnTime>0&&canSmelt()){
+                burnTime--;
+                progress++;
+                if (progress>100){
+                    craftItem();
+                    progress=0;
+                    dirty=true;
+                }
+            }
+            else if(!canSmelt()){
+                progress=0;
+            }
+            else{
+                burnTime=0;
+                currentItemBurnTime=0;
+                if(progress>0){
+                    progress=Math.max(0,progress -2);
+                    dirty=true;
+                }
+            }
+            if(dirty){
+                setChanged();
+            }
+        }
+
+
+    }
+
+
+
+    private boolean hasFuel(){
+        ItemStack fuelstack = itemHandler.getStackInSlot(INPUT_SLOT_2);
+        return !fuelstack.isEmpty()&&getBurnTime(fuelstack)>0;
+    }
+
+    private void consumeFuel(){
+        ItemStack fuelstack = itemHandler.getStackInSlot(INPUT_SLOT_2);
+        if(!fuelstack.isEmpty()){
+            int burnTimeValue = getBurnTime(fuelstack);
+            if (burnTimeValue > 0){
+                burnTime = burnTimeValue;
+                currentItemBurnTime = burnTimeValue;
+                fuelstack.shrink(1);
+                itemHandler.setStackInSlot(INPUT_SLOT_2,fuelstack);
+            }
+        }
+    }
+
+    private int getBurnTime(ItemStack fuelstack){
+        return net.minecraftforge.common.ForgeHooks.getBurnTime(fuelstack,RecipeType.SMELTING);
+    }
+
+    private boolean canSmelt(){
+        ItemStack inputstack = itemHandler.getStackInSlot(INPUT_SLOT_1);
+        if(!hasFuel())return false;
+        Optional<SmeltingRecipe> recipe = getCurrentRecipe();
+        if (recipe.isEmpty())return false;
+        ItemStack result = recipe.get().getResultItem(level.registryAccess());
+        ItemStack outputstack = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if(outputstack.isEmpty())return true;
+        if(!outputstack.isSameItem(outputstack,result))return false;
+        if(outputstack.getCount()+result.getCount()<=outputstack.getMaxStackSize())return true;
+        return false;
+    }
+
+    private Optional<SmeltingRecipe> getCurrentRecipe() {
+        ItemStack inputStack = itemHandler.getStackInSlot(INPUT_SLOT_1);
+        if (inputStack.isEmpty() || level == null) return Optional.empty();
+
+        return level.getRecipeManager().getRecipeFor(
+                RecipeType.SMELTING,
+                new SimpleContainer(inputStack),
+                level
+        );
+    }
+
+    private void craftItem(){
+        Optional<SmeltingRecipe> recipe=getCurrentRecipe();
+        if(recipe.isEmpty())return;
+        ItemStack inputstack=itemHandler.getStackInSlot(INPUT_SLOT_1);
+        ItemStack result=recipe.get().getResultItem(level.registryAccess());
+        ItemStack outputstack=itemHandler.getStackInSlot(OUTPUT_SLOT);
+        
+        // 消耗输入物品
+        inputstack.shrink(1);
+        itemHandler.setStackInSlot(INPUT_SLOT_1,inputstack);
+        
+        // 设置或增加输出物品
+        if(outputstack.isEmpty()) {
+            itemHandler.setStackInSlot(OUTPUT_SLOT,result.copy());
+        }
+        else {
+            outputstack.grow(result.getCount());
+            itemHandler.setStackInSlot(OUTPUT_SLOT,outputstack);
+        }
     }
 
     public int getProgress() {
         return progress;
+    }
+
+    public int getBurnTime() {
+        return burnTime;
+    }
+
+    public int getCurrentItemBurnTime(){
+        return currentItemBurnTime;
     }
 
     @Override
@@ -119,15 +244,21 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
          * 控制某个槽位是否允许放入指定物品。
          *
          * 当前实现中：
-         * 两个输入槽允许放入物品
-         * 输出槽不允许手动放入物品
-         *
-         * 这正符合大多数机器的常见逻辑：
-         * 玩家把原料放进输入槽而非输出槽，产物只会出现在输出槽。
+         * 输入槽 1 (索引 0) 只允许放入可熔炼的物品
+         * 燃料槽 (索引 1) 只允许放入可燃物品
+         * 输出槽 (索引 2) 不允许手动放入物品
          */
         @Override
         public boolean isItemValid(int slot, @Nullable ItemStack stack){
-            return slot == INPUT_SLOT_1 || slot == INPUT_SLOT_2;
+            if (stack == null || stack.isEmpty()) {
+                return false;
+            }
+            return switch (slot) {
+                case INPUT_SLOT_1 -> true; // 输入槽允许放入任何物品（由配方系统判断）
+                case INPUT_SLOT_2 -> getBurnTime(stack) > 0; // 燃料槽只允许可燃物品
+                case OUTPUT_SLOT -> false; // 输出槽不允许放入物品
+                default -> false;
+            };
         }
 
     };
