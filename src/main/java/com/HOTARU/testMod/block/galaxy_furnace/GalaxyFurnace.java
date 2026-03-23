@@ -11,11 +11,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.network.NetworkHooks;
@@ -26,6 +28,8 @@ import javax.annotation.Nullable;
 // 继承 HorizontalDirectionalBlock，使方块天然支持水平四方向（N/S/E/W）朝向。
 public class GalaxyFurnace extends HorizontalDirectionalBlock implements EntityBlock {
 
+    public static final BooleanProperty LIT = BooleanProperty.create("lit");
+
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // 方块的朝向属性（水平四方向）。
@@ -33,10 +37,11 @@ public class GalaxyFurnace extends HorizontalDirectionalBlock implements EntityB
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public GalaxyFurnace(){
         // 定义方块基础属性（硬度、声音等后续可在这里扩展）
-        super(Properties.of());
+        super(Properties.of().lightLevel(state -> state.getValue(LIT) ? 13 : 0).strength(3.5f).sound(SoundType.STONE));
         // 注册默认方块状态。
         // 当方块尚未被放置或没有额外信息时，默认朝向 NORTH。
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
     }
     // 玩家放置方块时调用，用于确定最终的方块状态。
     @Nullable
@@ -52,6 +57,7 @@ public class GalaxyFurnace extends HorizontalDirectionalBlock implements EntityB
      @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+        builder.add(LIT);
     }
 
     @Nullable
@@ -99,5 +105,9 @@ public class GalaxyFurnace extends HorizontalDirectionalBlock implements EntityB
             super.onRemove(state, level, pos, newstate, isMoving);
         }
     }
+
+
+
+
 
 }

@@ -4,10 +4,13 @@ import com.HOTARU.testMod.ModMenuTypes;
 import com.HOTARU.testMod.block.ModBlocks;
 import com.HOTARU.testMod.block.blockentity.GalaxyFurnaceBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
@@ -32,6 +35,8 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
      */
     private final ContainerData data;
 
+    private final RecipeType<? extends AbstractCookingRecipe> recipeType;
+
     /**
      * 客户端构造器。
      *
@@ -45,7 +50,7 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
     public GalaxyFurnaceMenu(int id, Inventory inv, FriendlyByteBuf buf){
         this(id,inv,
                 inv.player.level().getBlockEntity(buf.readBlockPos()),
-                new SimpleContainerData(1));
+                new SimpleContainerData(3));
     }
 
     /**
@@ -59,6 +64,7 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
         this.blockEntity = (GalaxyFurnaceBlockEntity) entity;
         this.level = inv.player.level();
         this.data = data;
+        this.recipeType=RecipeType.SMELTING;
             //添加玩家背包与快捷栏
         addPlayerInventory(inv,8,84);
         addPlayerHotbar(inv,8,142);
@@ -78,8 +84,60 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
      *
      */
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
-        return null;
+    public ItemStack quickMoveStack(Player player, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (index == 2) {
+                if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onQuickCraft(itemstack1, itemstack);
+            } else if (index != 1 && index != 0) {
+                if (this.canSmelt(itemstack1)) {
+                    if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (this.isFuel(itemstack1)) {
+                    if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index >= 3 && index < 30) {
+                    if (!this.moveItemStackTo(itemstack1, 30, 39, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index >= 30 && index < 39 && !this.moveItemStackTo(itemstack1, 3, 30, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, 3, 39, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty()) {
+                slot.setByPlayer(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, itemstack1);
+        }
+
+        return itemstack;
+    }
+
+    protected boolean isFuel(ItemStack pStack) {
+        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, this.recipeType) > 0;
+    }
+
+    protected boolean canSmelt(ItemStack pStack) {
+        return this.level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>)this.recipeType, new SimpleContainer(pStack), this.level).isPresent();
     }
 
     /**
@@ -105,9 +163,9 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
 
     //创建机器槽位
     //输入槽索引 1
-    private static final int INPUT_SLOT_1 = 0;
+    private static final int INPUT_SLOT = 0;
     //输入槽索引 2
-    private static final int INPUT_SLOT_2 = 1;
+    private static final int FUEL_SLOT = 1;
     //输出槽索引
     private static final int OUTPUT_SLOT = 2;
     /**
@@ -126,8 +184,8 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
     private void addMachineSlots(IItemHandler handler) {
         // 这里的 SlotItemHandler 是 Forge 提供的一个通用槽位实现，
         // 它会自动处理与 ItemStackHandler 的交互。
-        this.addSlot(new SlotItemHandler(handler, INPUT_SLOT_1, 56, 17));
-        this.addSlot(new SlotItemHandler(handler, INPUT_SLOT_2, 56, 53));
+        this.addSlot(new SlotItemHandler(handler, INPUT_SLOT, 56, 17));
+        this.addSlot(new SlotItemHandler(handler, FUEL_SLOT, 56, 53));
         this.addSlot(new SlotItemHandler(handler, OUTPUT_SLOT, 116, 35));
     }
 
@@ -154,5 +212,25 @@ public class GalaxyFurnaceMenu extends AbstractContainerMenu {
         }
     }
 
+    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //动态UI数据同步
+    public boolean isLit() {
+        return this.data.get(0) > 0;
+    }
+
+    public int getScaledProgress(int pixels){
+        int progress = this.data.get(0);
+        int maxProgress = 100; // 这里的 maxProgress 应该与 BlockEntity 中定义的最大进度值一致
+        return maxProgress>0?progress * pixels / maxProgress:0;
+    }
+
+    public int getScaledBurnTime(int pixels){
+        int burnTime = this.data.get(1);
+        int maxBurnTime = this.data.get(2);
+        if(maxBurnTime<=0){
+            return 0;
+        }
+        return burnTime * pixels / maxBurnTime;
+    }
 
 }

@@ -54,11 +54,18 @@ public class GalaxyFurnaceScreen extends AbstractContainerScreen<GalaxyFurnaceMe
         int x=(width-imageWidth)/2;
         int y=(height-imageHeight)/2;
         guiGraphics.blit(GUI,x,y,0,0,imageWidth,imageHeight);
+
+        if(menu.isLit()){
+            int flame= menu.getScaledBurnTime(13);
+            guiGraphics.blit(GUI,x+56,y+36+12-flame,176,12-flame,14,flame+1);
+        }
+
+        int arrow= menu.getScaledProgress(24);
+        guiGraphics.blit(GUI,x+79,y+34,176,14,arrow+1,16);
     }
 
-    /**
+    /*
      * 整个界面的渲染入口。
-     *
      * 渲染顺序通常是：
      * 1. 绘制背景
      * 2. 绘制 GUI

@@ -1,6 +1,7 @@
 package com.HOTARU.testMod.block.blockentity;
 
 import com.HOTARU.testMod.ModBlockEntities;
+import com.HOTARU.testMod.block.galaxy_furnace.GalaxyFurnace;
 import com.HOTARU.testMod.container.menu.GalaxyFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,12 +16,10 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.openjdk.nashorn.internal.runtime.options.Option;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -33,8 +32,8 @@ import java.util.Optional;
 public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
     private int progress = 0;// 进度条，0-100，表示当前熔炉的工作进度。
-    private int burnTime = 0;
-    private int currentItemBurnTime = 0;
+    private int burnTime = 0;// 当前燃料的剩余燃烧时间（tick）。
+    private int currentItemBurnTime = 0;// 当前燃料的总燃烧时间（tick），用于计算燃烧进度。
 
     protected final ContainerData data = new ContainerData() {
         @Override
@@ -72,55 +71,70 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
         }
         // 这里可以添加熔炉的工作逻辑，比如处理输入物品、
         boolean dirty = false;
-        if(hasFuel()){
-            if(burnTime<=0){
-                consumeFuel();
-                dirty=true;
+        boolean wasLit = burnTime > 0;
+
+        // 1) 只要在燃烧，就每 tick 递减，不依赖 fuel 槽是否还有物品
+        if (burnTime > 0) {
+            burnTime--;
+            dirty = true;
+        }
+
+        // 2) 如果不在燃烧，且燃料槽里有燃料，就点新一轮火
+        if (burnTime <= 0 && hasFuel()) {
+            consumeFuel();
+            dirty = true;
+        }
+
+        // 3) 只要“当前有火”且“可熔炼”，就推进进度
+        if (burnTime > 0 && canSmelt()) {
+            progress++;
+            if (progress >= 100) {
+                craftItem();
+                progress = 0;
+                dirty = true;
             }
-            if(burnTime>0&&canSmelt()){
-                burnTime--;
-                progress++;
-                if (progress>100){
-                    craftItem();
-                    progress=0;
-                    dirty=true;
-                }
-            }
-            else if(!canSmelt()){
-                progress=0;
-            }
-            else{
-                burnTime=0;
-                currentItemBurnTime=0;
-                if(progress>0){
-                    progress=Math.max(0,progress -2);
-                    dirty=true;
-                }
-            }
-            if(dirty){
-                setChanged();
+        } else {
+            if (progress > 0) {
+                progress = Math.max(0, progress - 2);
+                dirty = true;
             }
         }
 
+        // 4) 只在 lit 状态变化时更新方块状态（避免每 tick setBlockAndUpdate）
+        boolean isLit = burnTime > 0;
+        if (wasLit != isLit) {
+            level.setBlock(getBlockPos(),
+                    getBlockState().setValue(GalaxyFurnace.LIT, isLit), 3);
+            dirty = true;
+        }
+
+        if (dirty) setChanged();
+
+        //这里判断是否有燃料，如果有燃料就继续工作，如果没有燃料就停止工作。
+        if(burnTime>0){
+            level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(GalaxyFurnace.LIT,true));
+        }else {
+            level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(GalaxyFurnace.LIT,false));
+        }
 
     }
 
 
 
     private boolean hasFuel(){
-        ItemStack fuelstack = itemHandler.getStackInSlot(INPUT_SLOT_2);
+        ItemStack fuelstack = itemHandler.getStackInSlot(FUEL_SLOT);
         return !fuelstack.isEmpty()&&getBurnTime(fuelstack)>0;
     }
 
     private void consumeFuel(){
-        ItemStack fuelstack = itemHandler.getStackInSlot(INPUT_SLOT_2);
+        ItemStack fuelstack = itemHandler.getStackInSlot(FUEL_SLOT);
         if(!fuelstack.isEmpty()){
             int burnTimeValue = getBurnTime(fuelstack);
             if (burnTimeValue > 0){
                 burnTime = burnTimeValue;
                 currentItemBurnTime = burnTimeValue;
                 fuelstack.shrink(1);
-                itemHandler.setStackInSlot(INPUT_SLOT_2,fuelstack);
+                itemHandler.setStackInSlot(FUEL_SLOT,fuelstack);
             }
         }
     }
@@ -130,8 +144,8 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private boolean canSmelt(){
-        ItemStack inputstack = itemHandler.getStackInSlot(INPUT_SLOT_1);
-        if(!hasFuel())return false;
+        ItemStack inputstack = itemHandler.getStackInSlot(INPUT_SLOT);
+        if(inputstack.isEmpty())return false;
         Optional<SmeltingRecipe> recipe = getCurrentRecipe();
         if (recipe.isEmpty())return false;
         ItemStack result = recipe.get().getResultItem(level.registryAccess());
@@ -143,7 +157,7 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private Optional<SmeltingRecipe> getCurrentRecipe() {
-        ItemStack inputStack = itemHandler.getStackInSlot(INPUT_SLOT_1);
+        ItemStack inputStack = itemHandler.getStackInSlot(INPUT_SLOT);
         if (inputStack.isEmpty() || level == null) return Optional.empty();
 
         return level.getRecipeManager().getRecipeFor(
@@ -156,13 +170,13 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
     private void craftItem(){
         Optional<SmeltingRecipe> recipe=getCurrentRecipe();
         if(recipe.isEmpty())return;
-        ItemStack inputstack=itemHandler.getStackInSlot(INPUT_SLOT_1);
+        ItemStack inputstack=itemHandler.getStackInSlot(INPUT_SLOT);
         ItemStack result=recipe.get().getResultItem(level.registryAccess());
         ItemStack outputstack=itemHandler.getStackInSlot(OUTPUT_SLOT);
         
         // 消耗输入物品
         inputstack.shrink(1);
-        itemHandler.setStackInSlot(INPUT_SLOT_1,inputstack);
+        itemHandler.setStackInSlot(INPUT_SLOT,inputstack);
         
         // 设置或增加输出物品
         if(outputstack.isEmpty()) {
@@ -217,9 +231,9 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
 
     //在这个实体中加入物品栏
     //输入槽索引 1
-    public static final int INPUT_SLOT_1 = 0;
+    public static final int INPUT_SLOT = 0;
     //输入槽索引 2
-    public static final int INPUT_SLOT_2 = 1;
+    public static final int FUEL_SLOT = 1;
     //输出槽索引
     public static final int OUTPUT_SLOT = 2;
 
@@ -254,8 +268,8 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
                 return false;
             }
             return switch (slot) {
-                case INPUT_SLOT_1 -> true; // 输入槽允许放入任何物品（由配方系统判断）
-                case INPUT_SLOT_2 -> getBurnTime(stack) > 0; // 燃料槽只允许可燃物品
+                case INPUT_SLOT -> true; // 输入槽允许放入任何物品（由配方系统判断）
+                case FUEL_SLOT -> getBurnTime(stack) > 0; // 燃料槽只允许可燃物品
                 case OUTPUT_SLOT -> false; // 输出槽不允许放入物品
                 default -> false;
             };
@@ -292,4 +306,6 @@ public class GalaxyFurnaceBlockEntity extends BlockEntity implements MenuProvide
         //使用 Containers.dropContents 将临时容器中的物品掉落到世界中
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
+
+
 }
