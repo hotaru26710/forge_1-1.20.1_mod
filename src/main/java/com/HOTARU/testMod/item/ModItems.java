@@ -1,7 +1,8 @@
 package com.HOTARU.testMod.item;
 
+import com.HOTARU.testMod.ModTiers;
 import com.HOTARU.testMod.TestMod;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -43,8 +44,16 @@ public class ModItems {
             ITEMS.register("piece_zijie_wang",()->new Item(new Item.Properties()));
     public static final RegistryObject<Item> FUEL_CELL =
             ITEMS.register("fuel_cell",()->new ModFuelItem(new Item.Properties(),3000));
-
-
+    public static final RegistryObject<Item> GALAXY_PIKAXE =
+            ITEMS.register("galaxy_pickaxe",()->new PickaxeItem(ModTiers.GALAXY,1,-2.8f,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_SWORD =
+            ITEMS.register("galaxy_sword",()->new SwordItem(ModTiers.GALAXY,3,-2.4f,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_AXE =
+            ITEMS.register("galaxy_axe",()->new AxeItem(ModTiers.GALAXY,5,-3.0f,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_SHOVEL =
+            ITEMS.register("galaxy_shovel",()->new ShovelItem(ModTiers.GALAXY,1.5f,-3.0f,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_HOE =
+            ITEMS.register("galaxy_hoe",()->new HoeItem(ModTiers.GALAXY,-4,0.0f,new Item.Properties()));
 
 
     public static void register(IEventBus eventBus){

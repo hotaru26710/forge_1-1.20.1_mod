@@ -33,10 +33,15 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.TEST_ITEM_3.get(),"test item 3");
         add(ModItems.TEST_ITEM_4.get(),"test item 4");
         add(ModItems.SHIT.get(),"shit");
-        add(ModItems.MEAT_BONE.get(),"meat_bone");
+        add(ModItems.MEAT_BONE.get(),"meat bone");
         add(ModItems.GALAXY.get(),"Galaxy");
         add(ModItems.RAW_GALAXY.get(),"Raw Galaxy");
-        add(ModItems.FUEL_CELL.get(),"fuel_cell");
+        add(ModItems.FUEL_CELL.get(),"fuel cell");
+        add(ModItems.GALAXY_AXE.get(),"galaxy axe");
+        add(ModItems.GALAXY_HOE.get(),"galaxy hoe");
+        add(ModItems.GALAXY_PIKAXE.get(),"galaxy pickaxe");
+        add(ModItems.GALAXY_SHOVEL.get(),"galaxy shovel");
+        add(ModItems.GALAXY_SWORD.get(),"galaxy sword");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","test_tab_1");
         add("itemGroup.test_tab_2","test_tab_2");

@@ -29,6 +29,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GALAXY.get());
         basicItem(ModItems.MEAT_BONE.get());
         basicItem(ModItems.FUEL_CELL.get());
+        basicItem(ModItems.GALAXY_AXE.get());
+        basicItem(ModItems.GALAXY_HOE.get());
+        basicItem(ModItems.GALAXY_PIKAXE.get());
+        basicItem(ModItems.GALAXY_SHOVEL.get());
+        basicItem(ModItems.GALAXY_SWORD.get());
 
         withExistingParent("galaxy_block", modLoc("block/galaxy_block"));
         withExistingParent("galaxy_ore", modLoc("block/galaxy_ore"));
