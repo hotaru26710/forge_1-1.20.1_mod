@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#test_mod:has_galaxy_ore",
+  "features": [
+    "test_mod:galaxy_ore_placed"
+  ],
+  "step": "underground_ores"
+}
+
+
