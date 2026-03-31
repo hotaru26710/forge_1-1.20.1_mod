@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_legs_zijie_wang": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "test_mod:legs_zijie_wang"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "test_mod:meat_bone_from_smelting_legs_zijie_wang"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_legs_zijie_wang",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "test_mod:meat_bone_from_smelting_legs_zijie_wang"
+    ]
+  },
+  "sends_telemetry_event": false
+}

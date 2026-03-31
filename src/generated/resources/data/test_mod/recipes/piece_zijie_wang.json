@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "test_mod:shit"
+    }
+  ],
+  "result": {
+    "item": "test_mod:piece_zijie_wang"
+  }
+}

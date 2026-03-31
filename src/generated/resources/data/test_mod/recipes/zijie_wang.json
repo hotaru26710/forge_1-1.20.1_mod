@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "test_mod:arm_zijie_wang"
+    },
+    "B": {
+      "item": "test_mod:body_zijie_wang"
+    },
+    "X": {
+      "item": "test_mod:piece_zijie_wang"
+    },
+    "Y": {
+      "item": "test_mod:legs_zijie_wang"
+    },
+    "Z": {
+      "item": "test_mod:head_zijie_wang"
+    }
+  },
+  "pattern": [
+    "XZX",
+    "ABA",
+    "XYX"
+  ],
+  "result": {
+    "item": "test_mod:zijie_wang"
+  },
+  "show_notification": true
+}

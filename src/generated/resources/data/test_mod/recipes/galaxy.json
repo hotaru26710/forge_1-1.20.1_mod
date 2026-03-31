@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "test_mod:galaxy_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "test_mod:galaxy"
+  }
+}

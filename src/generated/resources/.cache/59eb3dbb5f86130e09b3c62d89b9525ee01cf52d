@@ -1,0 +1,8 @@
+// 1.20.1	2026-03-15T23:31:28.1009612	Loot Tables
+4c462fe3f6af45a61ac0055a7818d5578b1f0841 data/test_mod/loot_tables/blocks/galaxy_block.json
+f6a71849c5109d70ccace851a61987e4ba507b0e data/test_mod/loot_tables/blocks/galaxy_furnace.json
+f16f82d92531f52f986d0dca9ad0ac4bee7dc219 data/test_mod/loot_tables/blocks/galaxy_ore.json
+99334e1ba10743b443beef797bf2c74e48a3dcb0 data/test_mod/loot_tables/blocks/test_block_1.json
+282bcb6b54d8cb80a5f4616ef5ee8efef3f3b0e9 data/test_mod/loot_tables/blocks/test_block_2.json
+cd060871215fa7a1af35021be7a4d9811fa289e3 data/test_mod/loot_tables/blocks/test_block_3.json
+036f74b613614b4a5551bb20d2a75226f1e7a9b8 data/test_mod/loot_tables/blocks/zijie_wang.json

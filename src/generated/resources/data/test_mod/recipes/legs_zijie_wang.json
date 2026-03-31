@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "test_mod:piece_zijie_wang"
+    }
+  },
+  "pattern": [
+    "X X",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "item": "test_mod:legs_zijie_wang"
+  },
+  "show_notification": true
+}

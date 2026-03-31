@@ -1,0 +1,13 @@
+// 1.20.1	2026-03-17T11:45:50.7043711	Block States: test_mod
+705e84bb76a6032bdde5f4acf3df221f805f28a7 assets/test_mod/blockstates/galaxy_block.json
+0a156eee9c69c06ec827aae14ebfc0f49968f960 assets/test_mod/blockstates/galaxy_ore.json
+3c89685e31e56b51bd2f14fa294b6c8d3f17056c assets/test_mod/blockstates/test_block_1.json
+a062d133754123bdc44eaf2c604ccae9ad7e72d8 assets/test_mod/blockstates/test_block_2.json
+5d59039475c342ce7f07946ad83b661ba23c6943 assets/test_mod/blockstates/test_block_3.json
+3a39ee2399b994ce87850f70a4165ae1e339a12b assets/test_mod/blockstates/zijie_wang.json
+aa534f831601f64be65f7d4c1b2241c492f4c756 assets/test_mod/models/block/galaxy_block.json
+322839899b7bba7717b6f03582ba62bd58e59059 assets/test_mod/models/block/galaxy_ore.json
+65d1de1cb82d72c7a4d722104801c1d835a878c5 assets/test_mod/models/block/test_block_1.json
+f97668399e386c0b5faa5d75ef684fba4468150f assets/test_mod/models/block/test_block_2.json
+8a7336679d6f43ddff818b1cb8d99ad8b42507c6 assets/test_mod/models/block/test_block_3.json
+7a18be822c34b135b1dba8e4e5d685e0bfd0a7fc assets/test_mod/models/block/zijie_wang.json

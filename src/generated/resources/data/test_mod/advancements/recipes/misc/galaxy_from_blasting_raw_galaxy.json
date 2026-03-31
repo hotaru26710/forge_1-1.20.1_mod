@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_galaxy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "test_mod:raw_galaxy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "test_mod:galaxy_from_blasting_raw_galaxy"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_galaxy",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "test_mod:galaxy_from_blasting_raw_galaxy"
+    ]
+  },
+  "sends_telemetry_event": false
+}

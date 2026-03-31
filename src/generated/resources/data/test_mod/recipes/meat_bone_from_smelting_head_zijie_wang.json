@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "meat_bone",
+  "ingredient": {
+    "item": "test_mod:head_zijie_wang"
+  },
+  "result": "test_mod:meat_bone"
+}

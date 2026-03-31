@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "galaxy",
+  "ingredient": {
+    "item": "test_mod:raw_galaxy"
+  },
+  "result": "test_mod:galaxy"
+}
