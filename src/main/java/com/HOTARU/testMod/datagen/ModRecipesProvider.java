@@ -145,6 +145,38 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('Y',Items.STICK)
                 .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
                 .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,ModItems.GALAXY_ARMOR_HELMET.get(),1)
+                .pattern("XXX")
+                .pattern("X X")
+                .pattern("   ")
+                .define('X',ModItems.GALAXY.get())
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,ModItems.GALAXY_ARMOR_CHESTPLATE.get(),1)
+                .pattern("X X")
+                .pattern("XXX")
+                .pattern("XXX")
+                .define('X',ModItems.GALAXY.get())
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,ModItems.GALAXY_ARMOR_LEGGINGS.get(),1)
+                .pattern("X X")
+                .pattern("X X")
+                .pattern("X X")
+                .define('X',ModItems.GALAXY.get())
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,ModItems.GALAXY_ARMOR_BOOTS.get(),1)
+                .pattern("   ")
+                .pattern("X X")
+                .pattern("X X")
+                .define('X',ModItems.GALAXY.get())
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");

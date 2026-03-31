@@ -1,5 +1,6 @@
 package com.HOTARU.testMod.item;
 
+import com.HOTARU.testMod.ModArmorMaterials;
 import com.HOTARU.testMod.ModTiers;
 import com.HOTARU.testMod.TestMod;
 import net.minecraft.world.item.*;
@@ -54,6 +55,14 @@ public class ModItems {
             ITEMS.register("galaxy_shovel",()->new ShovelItem(ModTiers.GALAXY,1.5f,-3.0f,new Item.Properties()));
     public static final RegistryObject<Item> GALAXY_HOE =
             ITEMS.register("galaxy_hoe",()->new HoeItem(ModTiers.GALAXY,-4,0.0f,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_ARMOR_HELMET =
+            ITEMS.register("galaxy_armor_helmet",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_ARMOR_CHESTPLATE =
+            ITEMS.register("galaxy_armor_chestplate",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_ARMOR_LEGGINGS =
+            ITEMS.register("galaxy_armor_leggings",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> GALAXY_ARMOR_BOOTS =
+            ITEMS.register("galaxy_armor_boots",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.BOOTS,new Item.Properties()));
 
 
     public static void register(IEventBus eventBus){

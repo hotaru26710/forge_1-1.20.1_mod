@@ -42,6 +42,10 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.GALAXY_PIKAXE.get(),"galaxy pickaxe");
         add(ModItems.GALAXY_SHOVEL.get(),"galaxy shovel");
         add(ModItems.GALAXY_SWORD.get(),"galaxy sword");
+        add(ModItems.GALAXY_ARMOR_BOOTS.get(),"galaxy boots");
+        add(ModItems.GALAXY_ARMOR_CHESTPLATE.get(),"galaxy chestplate");
+        add(ModItems.GALAXY_ARMOR_HELMET.get(),"galaxy helmet");
+        add(ModItems.GALAXY_ARMOR_LEGGINGS.get(),"galaxy legging");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","test_tab_1");
         add("itemGroup.test_tab_2","test_tab_2");

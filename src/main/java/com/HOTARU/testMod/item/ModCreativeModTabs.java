@@ -53,6 +53,10 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.GALAXY_PIKAXE.get());
                         pOutput.accept(ModItems.GALAXY_SHOVEL.get());
                         pOutput.accept(ModItems.GALAXY_SWORD.get());
+                        pOutput.accept(ModItems.GALAXY_ARMOR_CHESTPLATE.get());
+                        pOutput.accept(ModItems.GALAXY_ARMOR_HELMET.get());
+                        pOutput.accept(ModItems.GALAXY_ARMOR_LEGGINGS.get());
+                        pOutput.accept(ModItems.GALAXY_ARMOR_BOOTS.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> ZIJIE_WANG =
