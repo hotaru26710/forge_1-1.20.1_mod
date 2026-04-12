@@ -4,6 +4,7 @@ package com.HOTARU.testMod;
 import com.HOTARU.testMod.item.ModCreativeModTabs;
 import com.HOTARU.testMod.item.ModItems;
 import com.HOTARU.testMod.block.ModBlocks;
+import com.HOTARU.testMod.item.ModPotions;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -44,6 +45,7 @@ public class TestMod
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModPotions.register(modEventBus);
         
 
 

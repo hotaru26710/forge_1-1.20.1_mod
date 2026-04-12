@@ -3,7 +3,11 @@ package com.HOTARU.testMod.datagen;
 import com.HOTARU.testMod.TestMod;
 import com.HOTARU.testMod.block.ModBlocks;
 import com.HOTARU.testMod.item.ModItems;
+import com.HOTARU.testMod.item.ModPotions;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,11 +50,13 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.GALAXY_ARMOR_CHESTPLATE.get(),"galaxy chestplate");
         add(ModItems.GALAXY_ARMOR_HELMET.get(),"galaxy helmet");
         add(ModItems.GALAXY_ARMOR_LEGGINGS.get(),"galaxy legging");
+        add(PotionUtils.setPotion(new ItemStack(Items.POTION),ModPotions.TEST_POTION.get()),"test potion");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","test_tab_1");
         add("itemGroup.test_tab_2","test_tab_2");
         add("itemGroup.test_tab_3","test_tab_3");
         add("itemGroup.zijie_wang_tab","zijie_wang_tab");
+        add("itemGroup.test_potion_tab","test_potion_tab");
 
     }
 }

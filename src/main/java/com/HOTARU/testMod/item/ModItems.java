@@ -4,6 +4,7 @@ import com.HOTARU.testMod.ModArmorMaterials;
 import com.HOTARU.testMod.ModTiers;
 import com.HOTARU.testMod.TestMod;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, TestMod.MOD_ID);//这里创建forge延迟注册器，告诉我们要注册的类型是item，传入我的mod_id下
+
 
 
 
@@ -63,6 +65,7 @@ public class ModItems {
             ITEMS.register("galaxy_armor_leggings",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     public static final RegistryObject<Item> GALAXY_ARMOR_BOOTS =
             ITEMS.register("galaxy_armor_boots",()->new ArmorItem(ModArmorMaterials.GALAXY,ArmorItem.Type.BOOTS,new Item.Properties()));
+
 
 
     public static void register(IEventBus eventBus){

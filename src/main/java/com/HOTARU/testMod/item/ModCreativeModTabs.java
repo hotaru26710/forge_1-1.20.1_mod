@@ -8,6 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -74,6 +76,13 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.MEAT_BONE.get());
                     }).build());
 
+    public static final RegistryObject<CreativeModeTab> MOD_POTIONS =
+            CREATIVE_MODE_TABS.register("mod_potions",()-> CreativeModeTab.builder()
+                    .icon(()->PotionUtils.setPotion(new ItemStack(Items.POTION),ModPotions.TEST_POTION.get()))
+                    .title(Component.translatable("itemGroup.test_potion_tab"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(PotionUtils.setPotion(new ItemStack(Items.POTION),ModPotions.TEST_POTION.get()));
+                    }).build());
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TABS.register(eventBus);

@@ -3,6 +3,7 @@ package com.HOTARU.testMod.datagen;
 import com.HOTARU.testMod.TestMod;
 import com.HOTARU.testMod.item.ModFuelItem;
 import com.HOTARU.testMod.item.ModItems;
+import com.HOTARU.testMod.item.ModPotions;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -38,6 +39,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GALAXY_ARMOR_BOOTS.get());
         basicItem(ModItems.GALAXY_ARMOR_CHESTPLATE.get());
         basicItem(ModItems.GALAXY_ARMOR_LEGGINGS.get());
+
 
         withExistingParent("galaxy_block", modLoc("block/galaxy_block"));
         withExistingParent("galaxy_ore", modLoc("block/galaxy_ore"));
