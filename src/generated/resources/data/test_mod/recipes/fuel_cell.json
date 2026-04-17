@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "test_mod:galaxy"
+    },
+    "Y": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "result": {
+    "item": "test_mod:fuel_cell"
+  },
+  "show_notification": true
+}
