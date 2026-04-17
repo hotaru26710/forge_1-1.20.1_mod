@@ -68,6 +68,14 @@ public class ModItems {
 
 
 
+
+    public static final RegistryObject<Item> GUITAR =
+            ITEMS.register("guitar",()->new ModSwordItem(ModTiers.GALAXY,5,-3.0f,new Item.Properties()));
+
+
+
+
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

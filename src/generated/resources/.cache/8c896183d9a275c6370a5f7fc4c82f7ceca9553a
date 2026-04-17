@@ -1,4 +1,4 @@
-// 1.20.1	2026-03-29T19:11:47.7957294	Item Models: test_mod
+// 1.20.1	2026-04-16T19:36:29.358386	Item Models: test_mod
 1e0e8d46ab2aa1c25e732882fdd0df6ba0fc259a assets/test_mod/models/item/arm_zijie_wang.json
 1b1d513ce768fc4639fed92e2b5c2103a19215fc assets/test_mod/models/item/body_zijie_wang.json
 a705a4923f17cbfff028d2716bdd25b522daf71f assets/test_mod/models/item/fuel_cell.json
@@ -14,6 +14,7 @@ c1f9e9a282ac347b2620b801a474bf89b339c27c assets/test_mod/models/item/galaxy_ore.
 42434c67ef938dce15c80f6345a147c76c92cc62 assets/test_mod/models/item/galaxy_pickaxe.json
 aff86605f14ec17ac4427581f47cbc7f6a40c24c assets/test_mod/models/item/galaxy_shovel.json
 590d63a45b30a8c8b1d651acc69ed1c202bab690 assets/test_mod/models/item/galaxy_sword.json
+5b311b22c823199a8c15f76cc782d9641fedbadd assets/test_mod/models/item/guitar.json
 e837530b0a52c71388260271b397cd529c5efb9e assets/test_mod/models/item/head_zijie_wang.json
 b54d2a591880ee8fb2267bb8881bdad9a44bc62f assets/test_mod/models/item/legs_zijie_wang.json
 1394de5601e9ff67fbe82cde0bff0abbf23d81f0 assets/test_mod/models/item/meat_bone.json

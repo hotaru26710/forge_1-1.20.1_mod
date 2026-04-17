@@ -3,12 +3,9 @@ package com.HOTARU.testMod.datagen;
 import com.HOTARU.testMod.TestMod;
 import com.HOTARU.testMod.block.ModBlocks;
 import com.HOTARU.testMod.item.ModItems;
-import com.HOTARU.testMod.item.ModPotions;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.data.LanguageProvider;
+
 
 public class ModZhCnLangProvider extends LanguageProvider{
     public ModZhCnLangProvider(PackOutput output) {
@@ -49,7 +46,8 @@ public class ModZhCnLangProvider extends LanguageProvider{
         add(ModItems.GALAXY_ARMOR_CHESTPLATE.get(),"宇宙头盔");
         add(ModItems.GALAXY_ARMOR_HELMET.get(),"宇宙护甲");
         add(ModItems.GALAXY_ARMOR_LEGGINGS.get(),"宇宙护腿");
-        add(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.TEST_POTION.get()),"测试药水");
+        add("item.minecraft.potion.effect.test_potion", "测试药水");
+        add(ModItems.GUITAR.get(),"电吉他");
         //这里填写创造物品栏的翻译
         add("itemGroup.test_tab_1","测试物品栏1");
         add("itemGroup.test_tab_2","测试物品栏2");

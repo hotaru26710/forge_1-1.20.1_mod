@@ -1,12 +1,14 @@
-// 1.20.1	2026-03-29T19:11:47.7967297	Recipes
+// 1.20.1	2026-04-17T16:45:00.2829701	Recipes
 7161b9c1901f20060325a06b13327fe602127cf5 data/test_mod/advancements/recipes/building_blocks/galaxy_block.json
 7cfbda0fec5a53bba3997b73b746d1d7535c5070 data/test_mod/advancements/recipes/combat/galaxy_armor_boots.json
 b1b2d00bc4378fbc199e2741f7cf187a4d379a9e data/test_mod/advancements/recipes/combat/galaxy_armor_chestplate.json
 872918f2052534a6344eaa57ce8d9b46301ce24d data/test_mod/advancements/recipes/combat/galaxy_armor_helmet.json
 205f7328f8193fd02eafb94c5a1ea9e06f7d504e data/test_mod/advancements/recipes/combat/galaxy_armor_leggings.json
 7462dc8ff0f1a43ac8f6aecacdd22f175547111c data/test_mod/advancements/recipes/combat/galaxy_sword.json
+4ea00c9e132dd2670630a85afdb9431b630da659 data/test_mod/advancements/recipes/combat/guitar.json
 c4dd1c1cdda6fd47ecf1eec678d96fd0ea1b7450 data/test_mod/advancements/recipes/misc/arm_zijie_wang.json
 a8de58beb622b40346f7b51cf2441e27d401e51b data/test_mod/advancements/recipes/misc/body_zijie_wang.json
+94d5bdc4dacd8c27581cc7df27073ab51e0a9754 data/test_mod/advancements/recipes/misc/fuel_cell.json
 c11f88c2393a1564ea76e01f4f99350a74b4c8e8 data/test_mod/advancements/recipes/misc/galaxy.json
 15ede22171aff558e3ff984cdde4495532b2977a data/test_mod/advancements/recipes/misc/galaxy_from_blasting_galaxy_ore.json
 46e466a83d4604b1ec31ba7602a2b5ab39b571ad data/test_mod/advancements/recipes/misc/galaxy_from_blasting_raw_galaxy.json
@@ -27,6 +29,7 @@ ec151370a09043b1cdae4aa5ecec64ef22f25c20 data/test_mod/advancements/recipes/tool
 7835d1bc04c127425223dce8eee714fd0f65d205 data/test_mod/advancements/recipes/tools/galaxy_shovel.json
 201c420fda13081a0d0de840a9586f50800dc0b3 data/test_mod/recipes/arm_zijie_wang.json
 5c6608537eebfe1c9db956b399e2665de5bd05c2 data/test_mod/recipes/body_zijie_wang.json
+715fdbf2def166c91e44f41775073a8a3357b6b0 data/test_mod/recipes/fuel_cell.json
 b36db5b10cbc42baaa6ba640e82d1ba63320511f data/test_mod/recipes/galaxy.json
 c1e777be60da4f11d5344e32e4cd9212ab2f70a0 data/test_mod/recipes/galaxy_armor_boots.json
 3e26b048906e954f104808943d7aed6ec58dcb60 data/test_mod/recipes/galaxy_armor_chestplate.json
@@ -43,6 +46,7 @@ f7ba671aeb0e7c6cf5843c258f6f3aadc4498dc9 data/test_mod/recipes/galaxy_block.json
 39fbd0f6f4ac7189736e797508f9c8c845b53134 data/test_mod/recipes/galaxy_pickaxe.json
 11bd9d8420d59fc63107d248faac7f16253ed921 data/test_mod/recipes/galaxy_shovel.json
 77b3552d5c069fe88241a4f7ad95beffe56155c0 data/test_mod/recipes/galaxy_sword.json
+77aefa7699d15aaea864c13381e8ccb3eb9fd5cb data/test_mod/recipes/guitar.json
 3daa6b08edfd538999e1c9d3471038f9ae675212 data/test_mod/recipes/head_zijie_wang.json
 14fe016a33ea98c082bf85951d16aa4d50e5ce95 data/test_mod/recipes/legs_zijie_wang.json
 20533ae5be48fb94f152d5824a4edfc881a15dcb data/test_mod/recipes/meat_bone_from_smelting_arm_zijie_wang.json

@@ -39,6 +39,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GALAXY_ARMOR_BOOTS.get());
         basicItem(ModItems.GALAXY_ARMOR_CHESTPLATE.get());
         basicItem(ModItems.GALAXY_ARMOR_LEGGINGS.get());
+        basicItem(ModItems.GUITAR.get());
 
 
         withExistingParent("galaxy_block", modLoc("block/galaxy_block"));

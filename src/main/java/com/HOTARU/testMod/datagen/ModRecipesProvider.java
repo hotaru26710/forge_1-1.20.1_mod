@@ -177,6 +177,24 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('X',ModItems.GALAXY.get())
                 .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
                 .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,ModItems.GUITAR.get(),1)
+                .pattern("XYX")
+                .pattern("XXX")
+                .pattern(" X ")
+                .define('X',ModItems.GALAXY.get())
+                .define('Y',ModItems.FUEL_CELL.get())
+                .unlockedBy(getHasName(ModItems.FUEL_CELL.get()),has(ModItems.FUEL_CELL.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItems.FUEL_CELL.get(),1)
+                .pattern("XXX")
+                .pattern("XYX")
+                .pattern("XXX")
+                .define('X',ModItems.GALAXY.get())
+                .define('Y',Items.COAL_BLOCK)
+                .unlockedBy(getHasName(ModItems.GALAXY.get()),has(ModItems.GALAXY.get()))
+                .save(pWriter);
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");
